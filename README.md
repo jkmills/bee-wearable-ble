@@ -107,10 +107,15 @@ account access needed, nothing leaves your own devices):
    UI toggle, not `adb shell settings put` directly; see `PROTOCOL.md`'s
    "Local-only operation" section for why that distinction matters on some
    builds).
-2. In the real Bee app, forget the device, then re-pair it from scratch,
-   with the snoop log running throughout. The key exchange (`SetEncryptionKey`,
-   opcode `0xC018`) only happens once, at pairing time; it won't show up in
-   ordinary reconnect traffic.
+2. Force a genuinely fresh pairing, with the snoop log running throughout.
+   One "forget" action in the Bee app alone wasn't enough to reproduce this;
+   what worked was forgetting the device in the phone's own OS-level
+   Bluetooth settings *and* using the "Upgrade device" option in the Bee app
+   (the order between the two didn't seem to matter), then letting it
+   re-pair from scratch. The key exchange (`SetEncryptionKey`, opcode
+   `0xC018`) only happens once, at pairing time; it won't show up in
+   ordinary reconnect traffic, so skipping either step risks capturing a log
+   with no key exchange in it at all.
 3. Pull the snoop log (e.g. via `adb bugreport`, since the raw log file
    itself usually isn't readable over a plain non-rooted `adb shell`) and
    parse it for the BTSnoop-wrapped ATT Write Request on your device's
