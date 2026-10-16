@@ -1,0 +1,27 @@
+[project]
+name = "bee-control"
+version = "0.1.0"
+description = "Unofficial local-only BLE control and audio pipeline for the Bee wearable"
+readme = "README.md"
+authors = [
+    { name = "Jason K. Mills" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "av==16.1.0",
+    "bleak>=3.0.2",
+    "cryptography>=50.0.2",
+    "fastapi>=0.143.2",
+    "faster-whisper>=1.2.1",
+    "panns-inference>=0.1.1",
+    "pyannote-audio>=4.0.7",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+bee-control = "bee_control:main"
+bee-control-ui = "bee_control.webapp:run"
+
+[build-system]
+requires = ["uv_build>=0.12.6,<0.13.0"]
+build-backend = "uv_build"

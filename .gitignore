@@ -1,0 +1,31 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Bee's own copyrighted app binaries -- not our work product, keep local-only
+base.apk
+split_config.*.apk
+
+# Device secrets — real captured encryption key material, never commit this
+device_secrets.json
+*.btsnoop_hci.log
+captured_audio.aac
+captured_audio_raw_decrypted.bin
+captured_audio_transcript.txt
+speaker_profiles.json
+captured_audio_labeled_transcript.txt
+captured_audio_windowed_tags.txt
+
+# Timestamped captures from the web UI / bee-control-ui's Start/Stop and
+# device-button-triggered capture (src/bee_control/webapp.py) -- real voice
+# recordings, same sensitivity as the fixed-name files above.
+captured_audio_*.aac
+captured_audio_*_raw_decrypted.bin
+

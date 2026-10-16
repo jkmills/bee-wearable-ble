@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>bee-control</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🐝 bee-control</h1>
+    <div id="conn-bar">
+      <span id="conn-dot" class="dot disconnected"></span>
+      <span id="conn-label">Not connected</span>
+      <button id="scan-btn">Scan</button>
+      <select id="device-select"></select>
+      <button id="connect-btn" disabled>Connect</button>
+      <button id="disconnect-btn" disabled>Disconnect</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="capture-section">
+      <h2>Audio capture</h2>
+      <div class="control-row">
+        <div class="control-label">
+          Capture <span class="badge confirmed">confirmed</span>
+        </div>
+        <div class="control-body">
+          <button id="capture-start-btn" disabled>Start</button>
+          <button id="capture-stop-btn" disabled>Stop</button>
+          <span id="capture-status" class="status-text">idle</span>
+        </div>
+        <div class="control-note">
+          Streams continuously until you hit Stop -- no fixed duration, same as the real
+          app. The device's own button is interchangeable with these buttons: a single
+          press starts a capture, the next press stops it, same as clicking Start then
+          Stop here. Saves <code>captured_audio_&lt;timestamp&gt;.aac</code> (plus a raw
+          decrypted .bin for diagnostics) to the project root as it records. Run
+          <code>process_audio.py</code> on the saved file afterwards for
+          transcription/diarization.
+        </div>
+      </div>
+    </section>
+
+    <section id="controls"></section>
+
+    <section id="log-section">
+      <h2>Status &amp; messages</h2>
+      <div id="log"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
